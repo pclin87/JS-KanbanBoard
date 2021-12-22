@@ -28,7 +28,16 @@ const create_item = () => {
   item.appendChild(input)
   var save_btn = document.createElement('button')
   save_btn.innerHTML ='Save'
-
+  save_btn.addEventListener('click', ()=>{
+    error.innerHTML = ''
+    if(input.value != ''){
+      order += 1
+      item.innerHTML = input.value
+      adding = false
+    } else {error.innerHTML = message}
+  })
+  item.appendChild(save_btn)
+  return item
 };
 
 document.querySelectorAll('.drop').forEach(element => {
