@@ -1,3 +1,5 @@
+const { doc } = require("mocha/lib/reporters");
+
 let order = 1;
 let adding = false;
 
@@ -20,6 +22,10 @@ const create_item = () => {
   item.classList.add('item')
   item.id = 'item-' + order
   item.draggable = true
+  item.addEventListener('dragstart', event => event.dataTransfer.setData('text', event.target.id))
+  item.addEventListener('dragend', event=> event.dataTransfer.clearData())
+  var input = document.createElement('input')
+  item.appendChild(input)
 };
 
 document.querySelectorAll('.drop').forEach(element => {
